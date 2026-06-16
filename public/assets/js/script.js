@@ -1,21 +1,4 @@
-const heroBtn = document.getElementById("heroBtn");
-
-if (heroBtn) {
-    heroBtn.addEventListener("click", function () {
-        const productsSection = document.getElementById("products");
-
-        if (productsSection) {
-            productsSection.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-    });
-}
-
-const cartButtons = document.querySelectorAll(".product-card button");
-
-cartButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        alert("محصول به سبد خرید اضافه شد!");
-    });
-});
+document.querySelectorAll('.mobile-toggle,.mobile-close,.mobile-backdrop').forEach(el=>el.addEventListener('click',()=>{document.querySelector('.mobile-menu')?.classList.toggle('show');document.querySelector('.mobile-backdrop')?.classList.toggle('show')}));
+const slides=[...document.querySelectorAll('[data-slider] .slide')];let current=0;function showSlide(i){if(!slides.length)return;slides[current].classList.remove('active');current=(i+slides.length)%slides.length;slides[current].classList.add('active')}document.querySelector('.slider-btn.next')?.addEventListener('click',()=>showSlide(current+1));document.querySelector('.slider-btn.prev')?.addEventListener('click',()=>showSlide(current-1));if(slides.length>1)setInterval(()=>showSlide(current+1),5000);
+document.querySelectorAll('[data-gallery-image]').forEach(img=>img.addEventListener('click',()=>{document.getElementById('mainProductImage').src=img.src}));
+document.querySelectorAll('.add-to-cart-form').forEach(form=>form.addEventListener('submit',()=>{const msg=document.createElement('div');msg.textContent='در حال افزودن به سبد خرید...';msg.style.cssText='position:fixed;bottom:20px;left:20px;background:#16a34a;color:white;padding:12px 18px;border-radius:12px;z-index:2000';document.body.appendChild(msg)}));
