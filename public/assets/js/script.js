@@ -1,12 +1,16 @@
 const heroBtn = document.getElementById("heroBtn");
 
-heroBtn.addEventListener("click", function () {
-    const productsSection = document.getElementById("products");
+if (heroBtn) {
+    heroBtn.addEventListener("click", function () {
+        const productsSection = document.getElementById("products");
 
-    productsSection.scrollIntoView({
-        behavior: "smooth"
+        if (productsSection) {
+            productsSection.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
     });
-});
+}
 
 const cartButtons = document.querySelectorAll(".product-card button");
 
