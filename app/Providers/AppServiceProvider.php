@@ -1,24 +1,3 @@
 <?php
-
-namespace App\Providers;
-
-use Illuminate\Support\ServiceProvider;
-
-class AppServiceProvider extends ServiceProvider
-{
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
-
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        //
-    }
-}
+namespace App\Providers;use App\Models\{Menu,Setting};use Illuminate\Support\Facades\View;use Illuminate\Support\ServiceProvider;
+class AppServiceProvider extends ServiceProvider{public function register():void{}public function boot():void{View::composer('*',function($view){$settings=cache()->remember('site_settings',60,fn()=>Setting::pluck('value','key'));$headerMenus=Menu::where('location','header')->where('is_active',1)->whereNull('parent_id')->with('children')->orderBy('sort_order')->get();$footerMenus=Menu::where('location','footer')->where('is_active',1)->orderBy('sort_order')->get();$view->with(compact('settings','headerMenus','footerMenus'));});}}

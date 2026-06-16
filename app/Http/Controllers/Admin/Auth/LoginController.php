@@ -1,0 +1,4 @@
+<?php
+namespace App\Http\Controllers\Admin\Auth;
+use App\Http\Controllers\Controller;use Illuminate\Http\Request;use Illuminate\Support\Facades\Auth;use Illuminate\View\View;use Illuminate\Http\RedirectResponse;
+class LoginController extends Controller{public function show():View{return view('admin.auth.login');}public function login(Request $r):RedirectResponse{$credentials=$r->validate(['email'=>'required|email','password'=>'required']);if(Auth::attempt($credentials,$r->boolean('remember')) && (Auth::user()->is_admin || Auth::user()->role==='admin')){$r->session()->regenerate();return redirect()->intended(route('admin.dashboard'));}Auth::logout();return back()->withErrors(['email'=>'اطلاعات ورود مدیر صحیح نیست.'])->onlyInput('email');}public function logout(Request $r):RedirectResponse{Auth::logout();$r->session()->invalidate();$r->session()->regenerateToken();return redirect()->route('admin.login');}}
