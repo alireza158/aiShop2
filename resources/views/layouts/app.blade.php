@@ -7,13 +7,19 @@
     <title>@yield('title', 'AI Shop - فروشگاه دیجیتال')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     @stack('styles')
 </head>
 <body>
     @include('partials.header')
 
     <main>
+        @if (session('success'))
+            <div class="container pt-3"><div class="alert alert-success rounded-4 shadow-sm">{{ session('success') }}</div></div>
+        @endif
+        @if ($errors->any())
+            <div class="container pt-3"><div class="alert alert-danger rounded-4 shadow-sm"><ul class="mb-0">@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div></div>
+        @endif
         @yield('content')
     </main>
 

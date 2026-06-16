@@ -1,6 +1,6 @@
 <div class="product-card">
     @if($product->discount_percent)<span class="discount">٪{{ $product->discount_percent }}</span>@endif
-    <a href="{{ route('products.show',$product->slug) }}"><img src="{{ $product->image ?: asset('assets/images/product1.svg') }}" alt="{{ $product->name }}"></a>
+    <a href="{{ route('products.show',$product->slug) }}"><img src="{{ $product->image ?: asset('assets/images/placeholder-product.svg') }}" alt="{{ $product->name }}"></a>
     <div class="product-info">
         <div class="rating">⭐ {{ $product->rating }} <span>{{ $product->brand }}</span></div>
         <h3><a href="{{ route('products.show',$product->slug) }}">{{ $product->name }}</a></h3>
