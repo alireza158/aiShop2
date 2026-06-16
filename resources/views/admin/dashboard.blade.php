@@ -1,0 +1,3 @@
+@extends('layouts.app')
+@section('title','داشبورد مدیریت')
+@section('content')<section class="products-section admin"><div class="container"><h1 class="section-title">داشبورد مدیریت</h1><div class="admin-grid">@foreach(['محصولات'=>$products,'دسته‌بندی‌ها'=>$categories,'سفارش‌ها'=>$orders,'اسلایدرها'=>$sliders,'مقالات'=>$articles] as $k=>$v)<div class="simple-card"><h3>{{ $k }}</h3><strong>{{ $v }}</strong></div>@endforeach</div><div class="admin-links"><a href="{{ route('admin.products.index') }}">مدیریت محصولات</a><a href="{{ route('admin.categories.index') }}">مدیریت دسته‌بندی‌ها</a><a href="{{ route('admin.sliders.index') }}">مدیریت اسلایدرها</a><a href="{{ route('admin.orders.index') }}">مدیریت سفارش‌ها</a></div></div></section>@endsection

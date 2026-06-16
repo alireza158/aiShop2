@@ -1,0 +1,2 @@
+@extends('layouts.app')
+@section('content')<section class="products-section"><div class="container"><h1 class="section-title">سفارش‌ها</h1><div class="simple-card"><table class="admin-table">@foreach($orders as $o)<tr><td>{{ $o->order_number }}</td><td>{{ $o->customer_name }}</td><td>{{ number_format($o->final_price) }}</td><td>{{ $o->status }}</td></tr>@endforeach</table>{{ $orders->links() }}</div></div></section>@endsection
