@@ -1,0 +1,3 @@
+<?php
+namespace App\Http\Controllers\Admin;use App\Http\Controllers\Controller;use App\Models\Setting;use Illuminate\Http\Request;
+class SettingController extends Controller{use HandlesAdminUploads;public function index(){return view('admin.settings.index',['settings'=>Setting::orderBy('group')->get()->keyBy('key')]);}public function update(Request $r){foreach($r->except('_token','_method') as $key=>$value){if($r->hasFile($key))$value=$this->upload($r,$key,'settings',Setting::getValue($key));Setting::updateOrCreate(['key'=>$key],['value'=>$value,'group'=>'general']);}return back()->with('success','تنظیمات ذخیره شد');}}
