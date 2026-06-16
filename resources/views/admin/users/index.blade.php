@@ -1,0 +1,3 @@
+@extends('layouts.admin')
+@section('title','مدیریت کاربران')
+@section('content')<div class="card p-3"><table class="table"><tr><th>نام</th><th>ایمیل</th><th>نقش</th><th>ادمین</th><th></th></tr>@foreach($users as $u)<tr><form method="POST" action="{{ route('admin.users.update',$u) }}">@csrf @method('PUT')<td>{{ $u->name }}</td><td>{{ $u->email }}</td><td><input class="form-control" name="role" value="{{ $u->role }}"></td><td><input type="checkbox" name="is_admin" value="1" @checked($u->is_admin)></td><td><button class="btn btn-sm btn-primary">ذخیره</button></td></form></tr>@endforeach</table>{{ $users->links() }}</div>@endsection
