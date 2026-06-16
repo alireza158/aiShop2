@@ -1,4 +1,3 @@
 <?php
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;use App\Models\{Article,Category,Order,Product,Slider};use Illuminate\View\View;
-class DashboardController extends Controller{public function __invoke():View{return view('admin.dashboard',['products'=>Product::count(),'categories'=>Category::count(),'orders'=>Order::count(),'sliders'=>Slider::count(),'articles'=>Article::count(),'latestOrders'=>Order::latest()->take(6)->get()]);}}
+namespace App\Http\Controllers\Admin;use App\Http\Controllers\Controller;use App\Models\{Article,Category,ContactMessage,Order,Product,User};use Illuminate\View\View;
+class DashboardController extends Controller{public function __invoke():View{return view('admin.dashboard',['products'=>Product::count(),'categories'=>Category::count(),'orders'=>Order::count(),'articles'=>Article::count(),'users'=>User::count(),'sales'=>Order::sum('final_price'),'newOrders'=>Order::where('status','pending')->count(),'outOfStock'=>Product::where('stock',0)->count(),'latestOrders'=>Order::latest()->take(6)->get(),'latestProducts'=>Product::latest()->take(6)->get(),'latestMessages'=>ContactMessage::latest()->take(5)->get()]);}}
